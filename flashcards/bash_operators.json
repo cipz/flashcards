@@ -1,0 +1,255 @@
+{
+    "title": "Bash Test Operators",
+    "sources": [
+        "https://tldp.org/LDP/abs/html/tests.html",
+        "https://kapeli.com/cheat_sheets/Bash_Test_Operators.docset/Contents/Resources/Documents/index"
+    ],
+    "cards": [
+        {
+            "question": "-a",
+            "answer": "logical and",
+            "category": "Compound Comparison",
+            "notes": "Similar to &&"
+        },
+        {
+            "question": "-o",
+            "answer": "logical or",
+            "category": "Compound Comparison",
+            "notes": "Similar to ||"
+        },
+        {
+            "question": "-eq",
+            "answer": "is equal to",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -eq \"$b\" ]"
+        },
+        {
+            "question": "-ne",
+            "answer": "is not equal to",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -ne \"$b\" ]"
+        },
+        {
+            "question": "-gt",
+            "answer": "is greater than",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -gt \"$b\" ]"
+        },
+        {
+            "question": "-ge",
+            "answer": "is greater than or equal to",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -ge \"$b\" ]"
+        },
+        {
+            "question": "-lt",
+            "answer": "is less than",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -lt \"$b\" ]"
+        },
+        {
+            "question": "-le",
+            "answer": "is less than or equal to",
+            "category": "Integer Comparison",
+            "notes": "if [ \"$a\" -le \"$b\" ]"
+        },
+        {
+            "question": "<",
+            "answer": "is less than",
+            "category": "Integer Comparison",
+            "notes": "(within double parentheses) ((\"$a\" < \"$b\"))"
+        },
+        {
+            "question": "<=",
+            "answer": "is less than or equal to",
+            "category": "Integer Comparison",
+            "notes": "(within double parentheses) ((\"$a\" <= \"$b\"))"
+        },
+        {
+            "question": ">",
+            "answer": "is greater than",
+            "category": "Integer Comparison",
+            "notes": "(within double parentheses) ((\"$a\" > \"$b\"))"
+        },
+        {
+            "question": ">=",
+            "answer": "is greater than or equal to",
+            "category": "Integer Comparison",
+            "notes": "(within double parentheses) ((\"$a\" >= \"$b\"))"
+        },
+        {
+            "question": "= ==",
+            "answer": "is equal to",
+            "category": "String Comparison",
+            "notes": "The == comparison operator behaves differently within a double-brackets test than within single brackets. [[ $a == z* ]] # True if $a starts with an \"z\" (pattern matching). [[ $a == \"z*\" ]] # True if $a is equal to z* (literal matching). [ $a == z* ] # File globbing and word splitting take place. [ \"$a\" == \"z*\" ] # True if $a is equal to z* (literal matching)."
+        },
+        {
+            "question": "!=",
+            "answer": "is not equal to",
+            "category": "String Comparison",
+            "notes": "if [ \"$a\" != \"$b\" ] This operator uses pattern matching within a [[ ... ]] construct."
+        },
+        {
+            "question": "<",
+            "answer": "is less than, in ASCII alphabetical order",
+            "category": "String Comparison",
+            "notes": "Note that the < needs to be escaped within a [ ] construct. if [[ \"$a\" < \"$b\" ]] if [ \"$a\" \\< \"$b\" ]"
+        },
+        {
+            "question": ">",
+            "answer": "is greater than, in ASCII alphabetical order.",
+            "category": "String Comparison",
+            "notes": "Note that the > needs to be escaped within a [ ] construct. if [[ \"$a\" > \"$b\" ]] if [ \"$a\" \\> \"$b\" ]"
+        },
+        {
+            "question": "-z",
+            "answer": "string is null",
+            "category": "String Comparison",
+            "notes": "that is, has zero length if [ -z \"$s\" ]"
+        },
+        {
+            "question": "-n",
+            "answer": "string is not null.",
+            "category": "String Comparison",
+            "notes": "if [ -n \"$s\" ]"
+        },
+        {
+            "question": "-e -a",
+            "answer": "file exists",
+            "category": "File Test Operators",
+            "notes": "-a is deprecated and its use is discouraged."
+        },
+        {
+            "question": "-f",
+            "answer": "file is a regular file (not a directory or device file)",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-d",
+            "answer": "file is a directory",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-h -L",
+            "answer": "file is a symbolic link",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-b",
+            "answer": "file is a block device",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-c",
+            "answer": "file is a character device",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-p",
+            "answer": "file is a pipe",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-S",
+            "answer": "file is a socket",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-s",
+            "answer": "file is not zero size",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-t",
+            "answer": "file (descriptor) is associated with a terminal device",
+            "category": "File Test Operators",
+            "notes": "This test option may be used to check whether the stdin [ -t 0 ] or stdout [ -t 1 ] in a given script is a terminal."
+        },
+        {
+            "question": "-r",
+            "answer": "file has read permission (for the user running the test)",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-w",
+            "answer": "file has write permission (for the user running the test)",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-x",
+            "answer": "file has execute permission (for the user running the test)",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-g",
+            "answer": "set-group-id (sgid) flag set on file or directory",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-u",
+            "answer": "set-user-id (suid) flag set on file",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-k",
+            "answer": "sticky bit set",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-O",
+            "answer": "you are owner of file",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-G",
+            "answer": "group-id of file same as yours",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-N",
+            "answer": "file modified since it was last read",
+            "category": "File Test Operators",
+            "notes": ""
+        },
+        {
+            "question": "-nt",
+            "answer": "file f1 is newer than f2",
+            "category": "File Test Operators",
+            "notes": "if [ \"$f1\" -nt \"$f2\" ]"
+        },
+        {
+            "question": "-ot",
+            "answer": "file f1 is older than f2",
+            "category": "File Test Operators",
+            "notes": "if [ \"$f1\" -ot \"$f2\" ]"
+        },
+        {
+            "question": "-ef",
+            "answer": "files f1 and f2 are hard links to the same file",
+            "category": "File Test Operators",
+            "notes": "if [ \"$f1\" -ef \"$f2\" ]"
+        },
+        {
+            "question": "!",
+            "answer": "\"not\" -- reverses the sense of the tests above (returns true if condition absent).",
+            "category": "File Test Operators",
+            "notes": ""
+        }
+    ]
+}

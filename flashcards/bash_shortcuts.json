@@ -1,0 +1,200 @@
+{
+    "title": "Bash Shortcuts",
+    "sources": [
+        "https://kapeli.com/cheat_sheets/Bash_Shortcuts.docset/Contents/Resources/Documents/index"
+    ],
+    "cards": [
+        {
+            "question": "CTRL+A CTRL+E",
+            "answer": "Go to the start/end of the command line",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+U CTRL+K",
+            "answer": "Delete from cursor to the start/end of the command line",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+W OPTION+D",
+            "answer": "Delete from cursor to start/end of word (whole word if at the boundary)",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+Y",
+            "answer": "Paste word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+XX",
+            "answer": "Move between start of command line and current cursor position (and back again)",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+B OPTION+F",
+            "answer": "Move backward/forward one word (or go to start of word the cursor is currently on)",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+C",
+            "answer": "Capitalize to end of word starting at cursor (whole word if cursor is at the beginning of word)",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+U",
+            "answer": "Make uppercase from cursor to end of word",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+L",
+            "answer": "Make lowercase from cursor to end of word",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+T",
+            "answer": "Swap current word with previous",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+F CTRL+B",
+            "answer": "Move forward/backward one character",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+D CTRL+H",
+            "answer": "Delete character after/before under cursor",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+T",
+            "answer": "Swap character under cursor with the previous one",
+            "category": "Command Editing Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+R",
+            "answer": "Search the history backwards",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+J",
+            "answer": "End the search at current history entry",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+G",
+            "answer": "Escape from history searching mode",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+P",
+            "answer": "Previous command in history (i.e., walk back through the command history)",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+N",
+            "answer": "Next command in history (i.e., walk forward through the command history)",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+_",
+            "answer": "Undo last command",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "OPTION+.",
+            "answer": "Use the last word of the previous command",
+            "category": "Command Recall Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+L",
+            "answer": "Clear the screen",
+            "category": "Command Control Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+S",
+            "answer": "Stops the output to the screen (for long running verbose command)",
+            "category": "Command Control Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+Q",
+            "answer": "Allow output to the screen (if previously stopped using command above)",
+            "category": "Command Control Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+C",
+            "answer": "Terminate the command",
+            "category": "Command Control Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "CTRL+Z",
+            "answer": "Suspend/stop the command",
+            "category": "Command Control Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!!",
+            "answer": "Run last command",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!blah",
+            "answer": "Run the most recent command that starts with blah",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!blah:p",
+            "answer": "Print out the command that !blah would run (also adds it as the latest command in the command history",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!$",
+            "answer": "The last word of the previous command (same as OPTION+.)",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!$:p",
+            "answer": "Print out the word that !$ would substitute",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!*",
+            "answer": "The previous command except for the first word (e.g., if you type find some_file.txt /, then !* would give you some_file.txt /)",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        },
+        {
+            "question": "!*:p",
+            "answer": "Print out what !* would substitute",
+            "category": "Bash Bang Shortcuts",
+            "notes": ""
+        }
+    ]
+}
