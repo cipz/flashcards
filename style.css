@@ -1,9 +1,6 @@
 body {
     font-family: 'Comic Neue', cursive;
-    /* Casting our font spell globally */
-    margin: 5%;
-    /* Optional: Ensuring the body takes full width without default margin */
-    padding-bottom: 5rem; /* Adds a comfortable padding at the bottom */
+    padding-bottom: 50px;
 }
 
 button {
@@ -21,12 +18,14 @@ button {
 
 /* Adjusting the title size */
 #title {
-    font-size: 20px; /* Smaller than the original */
+    font-size: 20px;
+    /* Smaller than the original */
 }
 
 /* Making the flashcard content text bigger */
 .flashcard-content {
-    font-size: 25px; /* Larger for better readability */
+    font-size: 25px;
+    /* Larger for better readability */
 }
 
 /* Ensure the .flashcard-question and .flashcard-answer classes, along with other previous styles, are also included as before */
@@ -37,3 +36,26 @@ button {
 .flashcard-answer {
     background-color: #b2f2bb;
 }
+
+.flashcard-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    /* Maximum width set to 90% of the flashcard width */
+    max-height: 500px;
+    /* Maximum height set to 200px */
+    height: auto;
+    /* Maintains the aspect ratio of the image */
+    width: auto;
+    /* Allows the image to scale responsively within constraints */
+}
+
+.choice-button {
+    margin: 2.5px;
+    width: 225px;
+}
+
+/* .choice-file {
+    min-width: 500px;
+} */

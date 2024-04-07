@@ -38,22 +38,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const cardFile = getQueryParam('cardFile');
+    const showCheatsheet = getQueryParam('cheatsheet') === 'true';
+
+    const shuffle = getQueryParam('shuffle') === 'true';
+    const invert = getQueryParam('invert') === 'true';
 
     // Hide or show the back button based on whether a cardFile is present
     document.getElementById('backToChoices').style.display = cardFile ? 'block' : 'none';
 
-    toggleNavigationVisibility(cardFile ? true : false);
-
-    if (!cardFile) {
-        // No cardFile specified, display choices from the manifest
+    if (cardFile && showCheatsheet) {
+        // The seeker has chosen to view a cheatsheet
+        fetchAndDisplayCheatsheet(cardFile); // This function will need to accommodate solely displaying the cheatsheet
+        toggleNavigationVisibility(false);
+    } else if (cardFile) {
+        // The seeker has chosen to explore the flashcards traditionally
+        loadFlashcards(cardFile, shuffle, invert);
+        toggleNavigationVisibility(true);
+    } else {
+        toggleNavigationVisibility(false);
         fetch('manifest.json')
             .then(response => response.json())
             .then(data => {
                 displayChoices(data.flashcardFiles);
             });
-    } else {
-        loadFlashcards(cardFile);
     }
+
+    // if (!cardFile) {
+    //     // No cardFile specified, display choices from the manifest
+    //     fetch('manifest.json')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             displayChoices(data.flashcardFiles);
+    //         });
+    // } else {
+    //     loadFlashcards(cardFile, shuffle, invert);
+    // }
 
     document.getElementById('backToChoices').addEventListener('click', function () {
         // Clear any selected cardFile from the URL
@@ -65,14 +84,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function displayChoices(flashcardFiles) {
-    const choicesContainer = document.getElementById('fileChoices');
+    const choicesContainer = document.getElementById('choices');
     flashcardFiles.forEach(file => {
-        const listItem = document.createElement('li');
-        listItem.classList.add('my-2');
+    
+        const buttonDiv = document.createElement('div');
+        buttonDiv.classList.add('flex', 'justify-between', 'items-center', 'choice-file');
 
         const choiceButton = document.createElement('button');
         choiceButton.textContent = file.name;
-        choiceButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'w-full', 'block', 'text-left');
+        choiceButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'choice-button');
         choiceButton.onclick = () => {
             // Before attempting to load the chosen file, clear any existing error parameters
             const currentUrl = new URL(window.location);
@@ -80,13 +100,23 @@ function displayChoices(flashcardFiles) {
             window.location.search = `?cardFile=${file.file}`;
         };
 
-        listItem.appendChild(choiceButton);
-        choicesContainer.appendChild(listItem);
+        const cheatsheetButton = document.createElement('button');
+        cheatsheetButton.textContent = "Cheatsheet";
+        // cheatsheetButton.classList.add('bg-green-500', 'hover:bg-green-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'm-2');
+        cheatsheetButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'choice-button');
+        cheatsheetButton.onclick = () => {
+            // Redirects to the same page with additional parameters to load and display the cheatsheet
+            window.location.href = `${window.location.pathname}?cardFile=${file.file}&cheatsheet=true`;
+        };
+
+        buttonDiv.appendChild(choiceButton);
+        buttonDiv.appendChild(cheatsheetButton);
+        choicesContainer.appendChild(buttonDiv);
     });
     document.getElementById('choices').classList.remove('hidden');
 }
 
-function loadFlashcards(file) {
+function loadFlashcards(file, shuffle, invert) {
 
     let flashcards = [];
     let currentIndex = 0;
@@ -97,10 +127,33 @@ function loadFlashcards(file) {
         showOverlay(currentHint, "Hint");
     });
 
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+    }
+
+    function invertFlashcard(card) {
+        return {
+            ...card,
+            question: card.answer,
+            answer: card.question
+        };
+    }
+
     fetch(file)
         .then(response => response.json())
         .then(data => {
+            // Assume flashcards are loaded into a variable named `flashcards`
             flashcards = data.cards;
+            if (shuffle) {
+                shuffleArray(flashcards);
+            }
+            // Apply the inversion spell to each flashcard if requested by the seeker
+            if (invert) {
+                flashcards = flashcards.map(card => invertFlashcard(card));
+            }
             document.getElementById('title').textContent = data.title;
             updateCounter();
             displayFlashcard();
@@ -123,21 +176,21 @@ function loadFlashcards(file) {
         const content = isQuestionShown ? card.question : card.answer;
 
         const currentHint = flashcards[currentIndex].hint;
-        if (!currentHint){
+        if (!currentHint) {
             document.getElementById('hintButton').classList.add("disabled-button")
-            document.getElementById("hintButton").disabled = true; 
+            document.getElementById("hintButton").disabled = true;
         } else {
             document.getElementById('hintButton').classList.remove("disabled-button")
-            document.getElementById("hintButton").disabled = false; 
+            document.getElementById("hintButton").disabled = false;
         }
 
         const currentReferences = flashcards[currentIndex].references;
         if (!currentReferences) {
             document.getElementById('infoButton').classList.add("disabled-button")
-            document.getElementById("infoButton").disabled = true; 
+            document.getElementById("infoButton").disabled = true;
         } else {
             document.getElementById('infoButton').classList.remove("disabled-button")
-            document.getElementById("infoButton").disabled = false; 
+            document.getElementById("infoButton").disabled = false;
         }
 
         const prevButton = document.getElementById('prev');
@@ -148,11 +201,16 @@ function loadFlashcards(file) {
             nextButton.disabled = false;
             prevButton.classList.add("disabled-button");
             nextButton.classList.remove("disabled-button");
-        } else {
+        } else if (currentIndex === (flashcards.length - 1)) {
             nextButton.disabled = true;
             prevButton.disabled = false;
             prevButton.classList.remove("disabled-button");
             nextButton.classList.add("disabled-button");
+        } else {
+            nextButton.disabled = false;
+            prevButton.disabled = false;
+            prevButton.classList.remove("disabled-button");
+            nextButton.classList.remove("disabled-button");
         }
 
         // Initiate fade out
@@ -174,7 +232,7 @@ function loadFlashcards(file) {
                 const img = document.createElement('img');
                 img.src = card[imageType];
                 img.alt = "Flashcard image";
-                img.classList.add('max-w-full', 'h-auto', 'mt-4'); // Tailwind classes to control size & spacing
+                img.classList.add('max-w-full', 'h-auto', 'mt-4', 'flashcard-img'); // Tailwind classes to control size & spacing
                 imageContainer.innerHTML = ''; // Clear previous images
                 imageContainer.appendChild(img);
             } else {
@@ -256,4 +314,39 @@ function showOverlay(content, title = "Details") {
     overlayContent.innerHTML = content; // Could be a string or an array of items
 
     document.getElementById('overlay').classList.remove('hidden');
+}
+
+function fetchAndDisplayCheatsheet(file) {
+    fetch(file)
+        .then(response => response.json())
+        .then(data => {
+            populateCheatsheet(data.cards);
+            document.getElementById('cheatsheetContainer').classList.remove('hidden');
+            document.getElementById('flashcard').classList.add('hidden'); // Assuming you have a container for flashcards
+        })
+        .catch(error => console.error("Failed to fetch flashcards:", error));
+}
+
+function populateCheatsheet(flashcards) {
+    const cheatsheetBody = document.getElementById('cheatsheetBody');
+    cheatsheetBody.innerHTML = ''; // Clear previous entries
+
+    flashcards.forEach(card => {
+        const row = document.createElement('tr');
+        const questionCell = document.createElement('td');
+        const answerCell = document.createElement('td');
+
+        questionCell.textContent = card.question;
+        answerCell.textContent = card.answer;
+
+        questionCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
+        answerCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
+
+        row.appendChild(questionCell);
+        row.appendChild(answerCell);
+        cheatsheetBody.appendChild(row);
+    });
+
+    // Show the cheatsheet
+    document.getElementById('cheatsheetContainer').classList.remove('hidden');
 }

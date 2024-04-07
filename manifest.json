@@ -5,8 +5,16 @@
             "file": "flashcards/test.json"
         },
         {
-            "name": "🐈 Cats",
-            "file": "flashcards/cats.json"
+            "name": "🕹️ Bash operators",
+            "file": "flashcards/bash_operators.json"
+        },
+        {
+            "name": "🕹️ Bash Shortcuts",
+            "file": "flashcards/bash_shortcuts.json"
+        },
+        {
+            "name": "🐈 Terminal",
+            "file": "flashcards/terminal.json"
         }
     ]
 }
