@@ -1,0 +1,22 @@
+{
+  "title": "The Codex of Elemental Magic",
+  "cards": [
+    {
+      "question": "What is the primary ingredient in a Potion of Healing?",
+      "answer": "Gillyweed",
+      "hint": "MIAO",
+      "notes": "ciao\nciao",
+      "question_image": "https://cdn.britannica.com/34/235834-050-C5843610/two-different-breeds-of-cats-side-by-side-outdoors-in-the-garden.jpg",
+      "answer_image": "https://www.shimu.co.uk/cdn/shop/articles/Miao-Costume_1200x.jpg",
+      "references": [
+        "https://www.catbehaviorassociates.com/why-cats-purr/",
+        "https://www.scientificamerican.com/article/why-do-cats-purr/"
+      ]
+    },
+    {
+      "category": "Advanced Conjurations",
+      "question": "How to summon a basic familiar?",
+      "answer": "Recite the ancient summoning verse under the full moon."
+    }
+  ]
+}

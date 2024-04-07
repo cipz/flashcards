@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗂️ MystiCards</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.4/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-gray-200 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto px-4">
+
+        <h1 id="title" class="text-3xl font-bold text-center my-8">MystiCards: The Gateway to Learning 🧙</h1>
+
+        <div id="flashcard"
+            class="flex justify-center items-center text-center p-8 bg-white rounded shadow-md cursor-pointer">
+            <p id="content" class="text-xl items-center text-center font-bold flashcard-content"></p>
+        </div>
+
+        <div id="choices" class="hidden w-1/4 mx-auto">
+            <ul id="fileChoices" class="list-none text-left space-y-2">
+                <!-- Enhanced spacing and centering with Tailwind classes -->
+            </ul>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <button id="prev" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                disabled>Previous</button>
+            <span id="counter" class="justify-center"></span>
+            <button id="next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Next</button>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <button id="hintButton"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Hint</button>
+            <button id="backToChoices" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Menu
+            </button>
+            <button id="infoButton"
+                class="info-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                References
+            </button>
+        </div>
+
+        <!-- The Overlay Structure -->
+        <!-- The Overlay Structure, now more general -->
+        <div id="overlay" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 overflow-y-auto h-full w-full">
+            <div class="relative top-20 mx-auto p-5 border w-3/4 shadow-lg rounded-md bg-white">
+                <div class="mt-3 text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="overlayTitle">Details</h3>
+                    <div class="mt-2 px-7 py-3" id="overlayContent">
+                        <!-- Content (hints or references) will be dynamically inserted here -->
+                    </div>
+                    <div class="items-center px-4 py-3">
+                        <button id="closeOverlay"
+                            class="px-4 py-2 bg-gray-800 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-700">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Toast Notification Container -->
+        <div id="toast" class="hidden fixed bottom-0 right-0 m-8 text-white py-2 px-4 rounded-lg z-50">
+            <p id="toastMessage">Error message goes here</p>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+    "flashcardFiles": [
+        {
+            "name": "💾 Test",
+            "file": "flashcards/test.json"
+        },
+        {
+            "name": "🐈 Cats",
+            "file": "flashcards/cats.json"
+        }
+    ]
+}

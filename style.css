@@ -1,0 +1,39 @@
+body {
+    font-family: 'Comic Neue', cursive;
+    /* Casting our font spell globally */
+    margin: 5%;
+    /* Optional: Ensuring the body takes full width without default margin */
+    padding-bottom: 5rem; /* Adds a comfortable padding at the bottom */
+}
+
+button {
+    min-width: 150px;
+}
+
+.disabled-button {
+    background-color: grey;
+}
+
+#flashcard {
+    transition: background-color 0.250s ease;
+    /* Smooth transition for color change */
+}
+
+/* Adjusting the title size */
+#title {
+    font-size: 20px; /* Smaller than the original */
+}
+
+/* Making the flashcard content text bigger */
+.flashcard-content {
+    font-size: 25px; /* Larger for better readability */
+}
+
+/* Ensure the .flashcard-question and .flashcard-answer classes, along with other previous styles, are also included as before */
+.flashcard-question {
+    background-color: #f9f871;
+}
+
+.flashcard-answer {
+    background-color: #b2f2bb;
+}
