@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.search = currentUrl.searchParams.toString();
     });
 
+    // Closing the overlay
+    document.getElementById('closeOverlay').addEventListener('click', function () {
+        document.getElementById('overlay').classList.add('hidden');
+    });
+
+
 });
 
 function displayChoices(flashcardFiles) {
@@ -238,11 +244,6 @@ function loadFlashcards(file, shuffle, invert) {
             showOverlay(content, "References"); // Display the references in the overlay
         });
 
-        // Closing the overlay
-        document.getElementById('closeOverlay').addEventListener('click', function () {
-            document.getElementById('overlay').classList.add('hidden');
-        });
-
         if (firstLoad) {
             // Directly display the content without transition upon initial load
             updateFlashcardContent(content);
@@ -337,23 +338,27 @@ function populateCheatsheet(flashcards) {
         questionCell.textContent = card.question;
         answerCell.textContent = card.answer;
         notesCell.textContent = card.notes;
-        
+
         refButton.textContent = "View References";
-        
-        refButton.onclick = () => showOverlay(card.references.join('<br>'), "References"); // Adapt to handle an array of references
-        
+
+        refButton.onclick = () => showOverlay(card.references.join('<br>'), "References");
+        if (!card.references) {
+            refButton.disabled = true;
+        }
+
         questionCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
         answerCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
         notesCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-        
+
         refButton.classList.add('view-refs-btn', 'bg-gray-500', 'hover:bg-gray-700', 'text-white', 'font-bold', 'py-1', 'px-2', 'text-xs', 'rounded');
         refCell.appendChild(refButton);
-        
+
         row.appendChild(questionCell);
         row.appendChild(answerCell);
         row.appendChild(notesCell);
         row.appendChild(refCell);
         cheatsheetBody.appendChild(row);
+
     });
 
     // Show the cheatsheet
