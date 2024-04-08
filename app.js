@@ -63,17 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    // if (!cardFile) {
-    //     // No cardFile specified, display choices from the manifest
-    //     fetch('manifest.json')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             displayChoices(data.flashcardFiles);
-    //         });
-    // } else {
-    //     loadFlashcards(cardFile, shuffle, invert);
-    // }
-
     document.getElementById('backToChoices').addEventListener('click', function () {
         // Clear any selected cardFile from the URL
         const currentUrl = new URL(window.location);
@@ -86,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function displayChoices(flashcardFiles) {
     const choicesContainer = document.getElementById('choices');
     flashcardFiles.forEach(file => {
-    
+
         const buttonDiv = document.createElement('div');
         buttonDiv.classList.add('flex', 'justify-between', 'items-center', 'choice-file');
 
@@ -317,33 +306,53 @@ function showOverlay(content, title = "Details") {
 }
 
 function fetchAndDisplayCheatsheet(file) {
+
+
     fetch(file)
         .then(response => response.json())
         .then(data => {
             populateCheatsheet(data.cards);
             document.getElementById('cheatsheetContainer').classList.remove('hidden');
             document.getElementById('flashcard').classList.add('hidden'); // Assuming you have a container for flashcards
+            document.getElementById('title').textContent = data.title;
         })
         .catch(error => console.error("Failed to fetch flashcards:", error));
 }
 
 function populateCheatsheet(flashcards) {
+
     const cheatsheetBody = document.getElementById('cheatsheetBody');
     cheatsheetBody.innerHTML = ''; // Clear previous entries
 
     flashcards.forEach(card => {
+
         const row = document.createElement('tr');
+
         const questionCell = document.createElement('td');
         const answerCell = document.createElement('td');
+        const notesCell = document.createElement('td');
+        const refCell = document.createElement('td');
+        const refButton = document.createElement('button');
 
         questionCell.textContent = card.question;
         answerCell.textContent = card.answer;
-
+        notesCell.textContent = card.notes;
+        
+        refButton.textContent = "View References";
+        
+        refButton.onclick = () => showOverlay(card.references.join('<br>'), "References"); // Adapt to handle an array of references
+        
         questionCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
         answerCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-
+        notesCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
+        
+        refButton.classList.add('view-refs-btn', 'bg-gray-500', 'hover:bg-gray-700', 'text-white', 'font-bold', 'py-1', 'px-2', 'text-xs', 'rounded');
+        refCell.appendChild(refButton);
+        
         row.appendChild(questionCell);
         row.appendChild(answerCell);
+        row.appendChild(notesCell);
+        row.appendChild(refCell);
         cheatsheetBody.appendChild(row);
     });
 
