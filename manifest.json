@@ -13,6 +13,10 @@
             "file": "flashcards/bash_shortcuts.json"
         },
         {
+            "name": "🕹️ SQLite",
+            "file": "flashcards/sqlite.json"
+        },
+        {
             "name": "🐈 Terminal",
             "file": "flashcards/terminal.json"
         }
