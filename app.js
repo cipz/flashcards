@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to toggle visibility of navigation elements based on the cardFile presence
     function toggleNavigationVisibility(show) {
-        const elementsToToggle = ['prev', 'next', 'counter', 'flashcard', 'content', 'hintButton', 'infoButton'];
+        const elementsToToggle = ['prev', 'next', 'counter', 'flashcard', 'content', 'hintButton', 'infoButton', ];
         elementsToToggle.forEach(elementId => {
             const element = document.getElementById(elementId);
             element.style.display = show ? 'block' : 'none'; // Adjust display based on the 'show' flag
@@ -78,8 +78,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+function compileLink(cardFile){
+
+    const invert = document.getElementById('invertCheckbox').checked;
+    const shuffle = document.getElementById('shuffleCheckbox').checked;
+
+    let queryParams = `?cardFile=${cardFile}`;
+        queryParams += invert ? '&invert=true' : '';
+        queryParams += shuffle ? '&shuffle=true' : '';
+
+        return `${window.location.pathname}${queryParams}`;
+
+}
+
 function displayChoices(flashcardFiles) {
+
     const choicesContainer = document.getElementById('choices');
+
     flashcardFiles.forEach(file => {
 
         const buttonDiv = document.createElement('div');
@@ -92,7 +107,7 @@ function displayChoices(flashcardFiles) {
             // Before attempting to load the chosen file, clear any existing error parameters
             const currentUrl = new URL(window.location);
             currentUrl.searchParams.delete('error');
-            window.location.search = `?cardFile=${file.file}`;
+            window.location.href = compileLink(file.file);
         };
 
         const cheatsheetButton = document.createElement('button');
@@ -101,7 +116,7 @@ function displayChoices(flashcardFiles) {
         cheatsheetButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'choice-button');
         cheatsheetButton.onclick = () => {
             // Redirects to the same page with additional parameters to load and display the cheatsheet
-            window.location.href = `${window.location.pathname}?cardFile=${file.file}&cheatsheet=true`;
+            window.location.href = `${compileLink(file.file)}&cheatsheet=true`;
         };
 
         buttonDiv.appendChild(choiceButton);
@@ -207,6 +222,8 @@ function loadFlashcards(file, shuffle, invert) {
             prevButton.classList.remove("disabled-button");
             nextButton.classList.remove("disabled-button");
         }
+
+        document.getElementById("optionsContainer").classList.add('hidden')
 
         // Initiate fade out
         contentElement.classList.add('flashcard-content-hidden');
@@ -357,6 +374,7 @@ function populateCheatsheet(flashcards) {
         row.appendChild(answerCell);
         row.appendChild(notesCell);
         row.appendChild(refCell);
+
         cheatsheetBody.appendChild(row);
 
     });
