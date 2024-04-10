@@ -148,7 +148,9 @@ function loadFlashcards(file, shuffle, invert) {
         return {
             ...card,
             question: card.answer,
-            answer: card.question
+            answer: card.question,
+            question_image: card.answer_image,
+            answer_image: card.question_image
         };
     }
 
