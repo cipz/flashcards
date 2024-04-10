@@ -51,15 +51,22 @@ button {
     /* Allows the image to scale responsively within constraints */
 }
 
-.choice-button {
-    margin: 2.5px;
-    width: 225px;
-}
-
-/* .choice-file {
-    min-width: 500px;
-} */
-
 #cheatsheetTable {
     min-width: 75%;
+}
+
+.errorToast {
+    background-color: red;
+}
+
+#toast {
+    display: none;
+}
+
+#cheatsheetContainer {
+    display: none;
+}
+
+#choices {
+    display: none;
 }
