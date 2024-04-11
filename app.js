@@ -182,8 +182,8 @@ function loadFlashcards(file, shuffle, invert) {
     let firstLoad = true;
 
     const contentElement = document.getElementById("content");
-    const imageContainer =
-      document.getElementById("imageContainer") || createImageContainer();
+    // const imageContainer = document.getElementById("imageContainer") || createImageContainer();
+    const imageContainer = document.getElementById("imageContainer");
 
     if (flashcards.length === 0) {
       return;
@@ -250,6 +250,7 @@ function loadFlashcards(file, shuffle, invert) {
 
       // Display the image if one exists for the current flashcard
       if (card[imageType]) {
+        document.getElementById("imageContainer").classList.remove("d-none");
         const img = document.createElement("img");
         img.src = card[imageType];
         img.alt = "Flashcard image";
@@ -258,6 +259,7 @@ function loadFlashcards(file, shuffle, invert) {
         imageContainer.appendChild(img);
       } else {
         imageContainer.innerHTML = "";
+        document.getElementById("imageContainer").classList.remove("d-none");
       }
     }
 

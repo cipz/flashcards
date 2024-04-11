@@ -7,10 +7,6 @@ button {
   min-width: 150px;
 }
 
-.disabled-button {
-  background-color: grey;
-}
-
 #flashcard {
   transition: background-color 0.25s ease;
   /* Smooth transition for color change */
@@ -28,7 +24,6 @@ button {
   /* Larger for better readability */
 }
 
-/* Ensure the .flashcard-question and .flashcard-answer classes, along with other previous styles, are also included as before */
 .flashcard-question {
   background-color: #f9f871;
 }
