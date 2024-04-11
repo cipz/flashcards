@@ -1,4 +1,3 @@
-// Function to show the toast notification
 function showToast(message, bgcol) {
 
     const toastElement = document.getElementById('toast');
@@ -6,12 +5,11 @@ function showToast(message, bgcol) {
 
     toastElement.classList.add(bgcol)
 
-    toastMessageElement.textContent = message; // Set the error message
-    toastElement.classList.remove('hidden'); // Show the toast
+    toastMessageElement.textContent = message;
+    toastElement.style.display = 'block';
 
-    // Hide the toast after 5 seconds
     setTimeout(() => {
-        toastElement.classList.add('hidden');
+        toastElement.style.display = 'none';
     }, 5000);
 }
 
@@ -22,9 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return urlParams.get(param);
     }
 
-    // Function to toggle visibility of navigation elements based on the cardFile presence
     function toggleNavigationVisibility(show) {
-        const elementsToToggle = ['prev', 'next', 'counter', 'flashcard', 'content', 'hintButton', 'infoButton', ];
+        const elementsToToggle = ['prev', 'next', 'counter', 'flashcard', 'content', 'hintButton', 'infoButton'];
         elementsToToggle.forEach(elementId => {
             const element = document.getElementById(elementId);
             element.style.display = show ? 'block' : 'none'; // Adjust display based on the 'show' flag
@@ -34,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const error = getQueryParam('error');
 
     if (error) {
-        showToast(error, 'bg-red-500');
+        showToast(error, 'errorToast');
     }
 
     const cardFile = getQueryParam('cardFile');
@@ -47,11 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('backToChoices').style.display = cardFile ? 'block' : 'none';
 
     if (cardFile && showCheatsheet) {
-        // The seeker has chosen to view a cheatsheet
-        fetchAndDisplayCheatsheet(cardFile); // This function will need to accommodate solely displaying the cheatsheet
+        fetchAndDisplayCheatsheet(cardFile);
         toggleNavigationVisibility(false);
     } else if (cardFile) {
-        // The seeker has chosen to explore the flashcards traditionally
         loadFlashcards(cardFile, shuffle, invert);
         toggleNavigationVisibility(true);
     } else {
@@ -63,31 +58,30 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 
-    document.getElementById('backToChoices').addEventListener('click', function () {
-        // Clear any selected cardFile from the URL
-        const currentUrl = new URL(window.location);
-        currentUrl.searchParams.delete('cardFile');
-        window.location.search = currentUrl.searchParams.toString();
-    });
-
     // Closing the overlay
     document.getElementById('closeOverlay').addEventListener('click', function () {
-        document.getElementById('overlay').classList.add('hidden');
+        document.getElementById('overlay').style.display = 'none';
     });
-
 
 });
 
-function compileLink(cardFile){
+document.getElementById('backToChoices').addEventListener('click', function () {
+    const currentUrl = new URL(window.location);
+    currentUrl.searchParams.delete('cardFile');
+    window.location.search = currentUrl.searchParams.toString();
+});
+
+
+function compileLink(cardFile) {
 
     const invert = document.getElementById('invertCheckbox').checked;
     const shuffle = document.getElementById('shuffleCheckbox').checked;
 
     let queryParams = `?cardFile=${cardFile}`;
-        queryParams += invert ? '&invert=true' : '';
-        queryParams += shuffle ? '&shuffle=true' : '';
+    queryParams += invert ? '&invert=true' : '';
+    queryParams += shuffle ? '&shuffle=true' : '';
 
-        return `${window.location.pathname}${queryParams}`;
+    return `${window.location.pathname}${queryParams}`;
 
 }
 
@@ -98,32 +92,33 @@ function displayChoices(flashcardFiles) {
     flashcardFiles.forEach(file => {
 
         const buttonDiv = document.createElement('div');
-        buttonDiv.classList.add('flex', 'justify-between', 'items-center', 'choice-file');
+        // buttonDiv.classList.add('');
 
         const choiceButton = document.createElement('button');
-        choiceButton.textContent = file.name;
-        choiceButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'choice-button');
+        choiceButton.textContent = "Flashcards " + file.name;
+        // choiceButton.classList.add('');
+
         choiceButton.onclick = () => {
-            // Before attempting to load the chosen file, clear any existing error parameters
             const currentUrl = new URL(window.location);
             currentUrl.searchParams.delete('error');
             window.location.href = compileLink(file.file);
         };
 
         const cheatsheetButton = document.createElement('button');
-        cheatsheetButton.textContent = "Cheatsheet";
-        // cheatsheetButton.classList.add('bg-green-500', 'hover:bg-green-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'm-2');
-        cheatsheetButton.classList.add('bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded', 'choice-button');
+        cheatsheetButton.textContent = "Cheatsheet " + file.name;
+        // cheatsheetButton.classList.add('');
         cheatsheetButton.onclick = () => {
-            // Redirects to the same page with additional parameters to load and display the cheatsheet
             window.location.href = `${compileLink(file.file)}&cheatsheet=true`;
         };
 
         buttonDiv.appendChild(choiceButton);
         buttonDiv.appendChild(cheatsheetButton);
         choicesContainer.appendChild(buttonDiv);
+
     });
-    document.getElementById('choices').classList.remove('hidden');
+
+    document.getElementById('choices').style.display = 'block';
+
 }
 
 function loadFlashcards(file, shuffle, invert) {
@@ -157,12 +152,10 @@ function loadFlashcards(file, shuffle, invert) {
     fetch(file)
         .then(response => response.json())
         .then(data => {
-            // Assume flashcards are loaded into a variable named `flashcards`
             flashcards = data.cards;
             if (shuffle) {
                 shuffleArray(flashcards);
             }
-            // Apply the inversion spell to each flashcard if requested by the seeker
             if (invert) {
                 flashcards = flashcards.map(card => invertFlashcard(card));
             }
@@ -171,7 +164,6 @@ function loadFlashcards(file, shuffle, invert) {
             displayFlashcard();
         })
         .catch(error => {
-            // If an error occurs, reload the page with an error parameter
             window.location.href = `${window.location.pathname}?error=${encodeURIComponent(error.message)}`;
         });
 
@@ -180,33 +172,35 @@ function loadFlashcards(file, shuffle, invert) {
         let firstLoad = true;
 
         const contentElement = document.getElementById('content');
-
         const imageContainer = document.getElementById('imageContainer') || createImageContainer();
 
-        if (flashcards.length === 0) return;
+        if (flashcards.length === 0) {
+            return
+        };
+
         const card = flashcards[currentIndex];
         const content = isQuestionShown ? card.question : card.answer;
 
         const currentHint = flashcards[currentIndex].hint;
         if (!currentHint) {
-            document.getElementById('hintButton').classList.add("disabled-button")
+            document.getElementById("hintButton").classList.add("disabled-button")
             document.getElementById("hintButton").disabled = true;
         } else {
-            document.getElementById('hintButton').classList.remove("disabled-button")
+            document.getElementById("hintButton").classList.remove("disabled-button")
             document.getElementById("hintButton").disabled = false;
         }
 
         const currentReferences = flashcards[currentIndex].references;
         if (!currentReferences) {
-            document.getElementById('infoButton').classList.add("disabled-button")
+            document.getElementById("infoButton").classList.add("disabled-button")
             document.getElementById("infoButton").disabled = true;
         } else {
-            document.getElementById('infoButton').classList.remove("disabled-button")
+            document.getElementById("infoButton").classList.remove("disabled-button")
             document.getElementById("infoButton").disabled = false;
         }
 
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
 
         if (currentIndex === 0) {
             prevButton.disabled = true;
@@ -225,18 +219,17 @@ function loadFlashcards(file, shuffle, invert) {
             nextButton.classList.remove("disabled-button");
         }
 
-        document.getElementById("optionsContainer").classList.add('hidden')
+        document.getElementById("optionsContainer").style.display = 'none';
 
-        // Initiate fade out
-        contentElement.classList.add('flashcard-content-hidden');
+        // contentElement.classList.add('flashcard-content-hidden');
 
         function updateFlashcardContent(content) {
             const flashcardElement = document.getElementById('flashcard');
             const contentElement = document.getElementById('content');
             contentElement.textContent = content;
-            // Remove existing color classes
+            
             flashcardElement.classList.remove('flashcard-question', 'flashcard-answer');
-            // Apply the appropriate new class based on whether the question or answer is shown
+            
             const colorClass = isQuestionShown ? 'flashcard-question' : 'flashcard-answer';
             const imageType = isQuestionShown ? 'question_image' : 'answer_image';
             flashcardElement.classList.add(colorClass);
@@ -246,11 +239,11 @@ function loadFlashcards(file, shuffle, invert) {
                 const img = document.createElement('img');
                 img.src = card[imageType];
                 img.alt = "Flashcard image";
-                img.classList.add('max-w-full', 'h-auto', 'mt-4', 'flashcard-img'); // Tailwind classes to control size & spacing
-                imageContainer.innerHTML = ''; // Clear previous images
+                // img.classList.add('');
+                imageContainer.innerHTML = ''; 
                 imageContainer.appendChild(img);
             } else {
-                imageContainer.innerHTML = ''; // Ensure no image is displayed if none is provided
+                imageContainer.innerHTML = ''; 
             }
         }
 
@@ -266,10 +259,10 @@ function loadFlashcards(file, shuffle, invert) {
         if (firstLoad) {
             // Directly display the content without transition upon initial load
             updateFlashcardContent(content);
-            firstLoad = false; // The tome has been opened, the spell cast
+            firstLoad = false;
         } else {
-            // Initiate fade out for subsequent reveals
-            contentElement.classList.add('flashcard-content-hidden');
+            
+            // contentElement.classList.add('flashcard-content-hidden');
 
             // After fade out, change the content and fade it back in
             setTimeout(() => {
@@ -322,7 +315,8 @@ function showOverlay(content, title = "Details") {
     overlayTitle.textContent = title; // "Hint" or "References"
     overlayContent.innerHTML = content; // Could be a string or an array of items
 
-    document.getElementById('overlay').classList.remove('hidden');
+    // document.getElementById('overlay').classList.remove('hidden');
+    document.getElementById('overlay').style.display = 'block';
 }
 
 function fetchAndDisplayCheatsheet(file) {
@@ -365,11 +359,11 @@ function populateCheatsheet(flashcards) {
             refButton.disabled = true;
         }
 
-        questionCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-        answerCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
-        notesCell.classList.add('px-6', 'py-4', 'whitespace-nowrap', 'text-sm', 'text-gray-500');
+        // questionCell.classList.add('');
+        // answerCell.classList.add('');
+        // notesCell.classList.add('');
 
-        refButton.classList.add('view-refs-btn', 'bg-gray-500', 'hover:bg-gray-700', 'text-white', 'font-bold', 'py-1', 'px-2', 'text-xs', 'rounded');
+        // refButton.classList.add('');
         refCell.appendChild(refButton);
 
         row.appendChild(questionCell);
@@ -382,5 +376,6 @@ function populateCheatsheet(flashcards) {
     });
 
     // Show the cheatsheet
-    document.getElementById('cheatsheetContainer').classList.remove('hidden');
+    // document.getElementById('cheatsheetContainer').classList.remove('hidden');
+    document.getElementById('cheatsheetContainer').style.display = 'block';
 }
