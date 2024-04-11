@@ -358,9 +358,17 @@ function populateCheatsheet(flashcards) {
     const row = document.createElement("tr");
 
     const questionCell = document.createElement("td");
+    questionCell.classList.add("text-center");
+
     const answerCell = document.createElement("td");
+    answerCell.classList.add("text-center");
+
     const notesCell = document.createElement("td");
+    notesCell.classList.add("text-center");
+
     const refCell = document.createElement("td");
+    refCell.classList.add("text-center");
+
     const refButton = document.createElement("button");
 
     questionCell.textContent = card.question;
@@ -368,11 +376,11 @@ function populateCheatsheet(flashcards) {
     notesCell.textContent = card.notes;
 
     refButton.textContent = "View References";
-
     refButton.onclick = () =>
       showOverlay(card.references.join("<br>"), "References");
     if (!card.references) {
       refButton.disabled = true;
+      refButton.classList.add("d-none");
     }
 
     // questionCell.classList.add('');
