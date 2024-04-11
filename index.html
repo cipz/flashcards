@@ -15,30 +15,50 @@
     />
   </head>
 
-  <body class="">
+  <body>
     <div class="min-vh-100 d-flex align-items-center">
-      <div class="container">
+      <div class="container w-75">
         <div class="row justify-content-center">
           <div class="col-auto">
             <h1 id="title" class="">MystiCards: The Gateway to Learning 🧙</h1>
           </div>
         </div>
 
-        <div class="row justify-content-center">
-          <div id="choices" class="col-auto">
-            <ul id="fileChoices" class=""></ul>
-          </div>
+        <div id="choices" class="row justify-content-center">
+          <div id="fileChoices" class="col-auto"></div>
         </div>
 
         <div id="optionsContainer" class="row justify-content-center">
-          <label class="">
-            <input type="checkbox" id="invertCheckbox" class="" />
-            <span class="ml-2 text-gray-700">Invert Cards</span>
-          </label>
-          <label class="">
-            <input type="checkbox" id="shuffleCheckbox" class="" />
-            <span class="">Shuffle Cards</span>
-          </label>
+          <div class="form-check form-switch col-auto">
+            <div class="row">
+              <div class="col-auto">
+                <label class="">
+                  <span class="">Invert Cards</span>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="invertCheckbox"
+                  />
+                </label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="row">
+                <div class="col-auto">
+                  <label class="">
+                    <span class="">Shuffle Cards</span>
+                    <input
+                      class="form-check-input"
+                      role="switch"
+                      type="checkbox"
+                      id="shuffleCheckbox"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div id="flashcard" class="row justify-content-center">
@@ -64,24 +84,28 @@
         <div id="flashcard-commands" class="row justify-content-center">
           <div class="row justify-content-center">
             <div class="col-auto">
-              <button id="prev" class="" disabled>Previous</button>
+              <button id="prev" class="btn btn-primary" disabled>
+                Previous
+              </button>
             </div>
             <div class="col-auto">
               <span id="counter" class=""></span>
             </div>
             <div class="col-auto">
-              <button id="next" class="">Next</button>
+              <button id="next" class="btn btn-primary">Next</button>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-auto">
-              <button id="hintButton" class="">Hint</button>
-            </div>
-            <div class="col-auto"> 
-              <button id="backToChoices" class="">Menu</button>
+              <button id="hintButton" class="btn btn-primary">Hint</button>
             </div>
             <div class="col-auto">
-              <button id="infoButton" class="info-btn">References</button>
+              <button id="backToChoices" class="btn btn-primary">Menu</button>
+            </div>
+            <div class="col-auto">
+              <button id="infoButton" class="btn btn-primary">
+                References
+              </button>
             </div>
           </div>
         </div>
