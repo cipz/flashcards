@@ -58,19 +58,3 @@ button {
 .errorToast {
     background-color: red;
 }
-
-#toast {
-    display: none;
-}
-
-#cheatsheetContainer {
-    display: none;
-}
-
-#choices {
-    display: none;
-}
-
-#overlay {
-    display: none;
-}

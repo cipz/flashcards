@@ -3,13 +3,17 @@ function showToast(message, bgcol) {
     const toastElement = document.getElementById('toast');
     const toastMessageElement = document.getElementById('toastMessage');
 
+    // TODO VERIFY
     toastElement.classList.add(bgcol)
 
     toastMessageElement.textContent = message;
-    toastElement.style.display = 'block';
+    // toastElement.style.display = 'block';
+    toastElement.classList.remove("d-none");
+
 
     setTimeout(() => {
-        toastElement.style.display = 'none';
+        // toastElement.style.display = 'none';
+        toastElement.classList.add("d-none")
     }, 5000);
 }
 
@@ -60,7 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Closing the overlay
     document.getElementById('closeOverlay').addEventListener('click', function () {
-        document.getElementById('overlay').style.display = 'none';
+        // document.getElementById('overlay').style.display = 'none';
+        document.getElementById('overlay').classList.add("d-none");
+        
     });
 
 });
@@ -117,7 +123,8 @@ function displayChoices(flashcardFiles) {
 
     });
 
-    document.getElementById('choices').style.display = 'block';
+    // document.getElementById('choices').style.display = 'block';
+    document.getElementById('choices').style.remove("d-none");
 
 }
 
@@ -219,9 +226,7 @@ function loadFlashcards(file, shuffle, invert) {
             nextButton.classList.remove("disabled-button");
         }
 
-        document.getElementById("optionsContainer").style.display = 'none';
-
-        // contentElement.classList.add('flashcard-content-hidden');
+        document.getElementById("optionsContainer").classList.add("d-none");
 
         function updateFlashcardContent(content) {
             const flashcardElement = document.getElementById('flashcard');
@@ -315,8 +320,8 @@ function showOverlay(content, title = "Details") {
     overlayTitle.textContent = title; // "Hint" or "References"
     overlayContent.innerHTML = content; // Could be a string or an array of items
 
-    // document.getElementById('overlay').classList.remove('hidden');
-    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('overlay').classList.remove('d-none');
+    // document.getElementById('overlay').style.display = 'block';
 }
 
 function fetchAndDisplayCheatsheet(file) {
@@ -326,8 +331,9 @@ function fetchAndDisplayCheatsheet(file) {
         .then(response => response.json())
         .then(data => {
             populateCheatsheet(data.cards);
-            document.getElementById('cheatsheetContainer').classList.remove('hidden');
-            document.getElementById('flashcard').classList.add('hidden'); // Assuming you have a container for flashcards
+            document.getElementById('cheatsheetContainer').classList.remove('d-none');
+            document.getElementById('flashcard').classList.add('d-none'); // Assuming you have a container for flashcards
+            document.getElementById('optionsContainer').classList.add('d-none'); // Assuming you have a container for flashcards
             document.getElementById('title').textContent = data.title;
         })
         .catch(error => console.error("Failed to fetch flashcards:", error));
@@ -376,6 +382,5 @@ function populateCheatsheet(flashcards) {
     });
 
     // Show the cheatsheet
-    // document.getElementById('cheatsheetContainer').classList.remove('hidden');
-    document.getElementById('cheatsheetContainer').style.display = 'block';
+    document.getElementById('cheatsheetContainer').classList.remove('d-none');
 }
