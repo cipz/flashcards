@@ -70,3 +70,7 @@ button {
 #choices {
     display: none;
 }
+
+#overlay {
+    display: none;
+}

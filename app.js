@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Closing the overlay
     document.getElementById('closeOverlay').addEventListener('click', function () {
-        document.getElementById('overlay').classList.add('hidden');
+        document.getElementById('overlay').style.display = 'none';
     });
 
 });
