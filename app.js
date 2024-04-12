@@ -96,18 +96,35 @@ function compileLink(cardFile) {
 }
 
 function displayChoices(flashcardFiles) {
-  const choicesContainer = document.getElementById("fileChoices");
+  const choicesContainer = document.getElementById("choices");
 
   flashcardFiles.forEach((file) => {
+
+    const choiceEntryContainer = document.createElement("div");
+    choiceEntryContainer.classList.add("col-md-3", "menu-entry");
+
+    const labelRow = document.createElement("div");
+    labelRow.classList.add(
+      "justify-content-center",
+      "align-items-center",
+      "menuChoice"
+    );
+
+    const labelElementContainer = document.createElement("div");
+    labelElementContainer.classList.add("col-auto", "fileLabel");
+
+    const labelText = document.createElement("p");
+    labelText.innerText = file.name;
+
     const buttonRow = document.createElement("div");
-    buttonRow.classList.add("row", "justify-content-center");
+    buttonRow.classList.add("row", "align-items-center");
 
     const buttonCol = document.createElement("div");
-    buttonCol.classList.add("col-auto");
+    buttonCol.classList.add("col", "align-items-center", "fileChoicesRow");
 
     const choiceButton = document.createElement("button");
     choiceButton.classList.add("btn", "btn-primary");
-    choiceButton.innerHTML = "Flashcards<br/>" + file.name;
+    choiceButton.innerText = "🪧";
     choiceButton.onclick = () => {
       const currentUrl = new URL(window.location);
       currentUrl.searchParams.delete("error");
@@ -115,20 +132,26 @@ function displayChoices(flashcardFiles) {
     };
 
     const cheatsheetButton = document.createElement("button");
-    cheatsheetButton.innerHTML = "Cheatsheet<br/>" + file.name;
+    cheatsheetButton.innerText = "📃";
     cheatsheetButton.classList.add("btn", "btn-primary");
     cheatsheetButton.onclick = () => {
       window.location.href = `${compileLink(file.file)}&cheatsheet=true`;
     };
 
+    labelElementContainer.appendChild(labelText);
+    labelRow.appendChild(labelElementContainer);
+
     buttonRow.appendChild(buttonCol);
     buttonCol.appendChild(choiceButton);
     buttonCol.appendChild(cheatsheetButton);
 
-    choicesContainer.appendChild(buttonRow);
+    choiceEntryContainer.appendChild(labelRow);
+    choiceEntryContainer.appendChild(buttonRow);
+
+    choicesContainer.appendChild(choiceEntryContainer);
   });
 
-  document.getElementById("choices").style.remove("d-none");
+  document.getElementById("choices").classList.remove("d-none");
 }
 
 function loadFlashcards(file, shuffle, invert) {
@@ -358,9 +381,17 @@ function populateCheatsheet(flashcards) {
     const row = document.createElement("tr");
 
     const questionCell = document.createElement("td");
+    questionCell.classList.add("text-center");
+
     const answerCell = document.createElement("td");
+    answerCell.classList.add("text-center");
+
     const notesCell = document.createElement("td");
+    notesCell.classList.add("text-center");
+
     const refCell = document.createElement("td");
+    refCell.classList.add("text-center");
+
     const refButton = document.createElement("button");
 
     questionCell.textContent = card.question;
@@ -368,11 +399,11 @@ function populateCheatsheet(flashcards) {
     notesCell.textContent = card.notes;
 
     refButton.textContent = "View References";
-
     refButton.onclick = () =>
       showOverlay(card.references.join("<br>"), "References");
     if (!card.references) {
       refButton.disabled = true;
+      refButton.classList.add("d-none");
     }
 
     // questionCell.classList.add('');

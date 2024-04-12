@@ -20,15 +20,11 @@
       <div class="container w-75">
         <div class="row justify-content-center">
           <div class="col-auto">
-            <h1 id="title" class="display-1">
-              MystiCards: The Gateway to Learning 🧙
-            </h1>
+            <h1 id="title">MystiCards: The Gateway to Learning 🧙</h1>
           </div>
         </div>
 
-        <div id="choices" class="row justify-content-center">
-          <div id="fileChoices" class="col-auto"></div>
-        </div>
+        <div id="choices" class="row justify-content-center"></div>
 
         <div id="optionsContainer" class="row justify-content-center">
           <div class="form-check form-switch col-auto">
@@ -64,7 +60,7 @@
         </div>
 
         <div id="flashcard" class="row">
-          <div class="col-auto">
+          <div class="col">
             <div class="row justify-content-center">
               <div class="col-auto">
                 <p id="content" class="flashcard-content"></p>
@@ -77,13 +73,16 @@
         </div>
 
         <div id="cheatsheetContainer" class="row d-none">
-          <table id="cheatsheetTable" class="">
+          <table
+            id="cheatsheetTable"
+            class="table table-striped table-hover table-responsive"
+          >
             <thead>
               <tr>
-                <th class="">Question</th>
-                <th class="">Answer</th>
-                <th class="">Notes</th>
-                <th class="">References</th>
+                <th class="text-center">Question</th>
+                <th class="text-center">Answer</th>
+                <th class="text-center">Notes</th>
+                <th class="text-center">References</th>
               </tr>
             </thead>
             <tbody id="cheatsheetBody" class="">
@@ -95,28 +94,24 @@
         <div id="flashcard-commands" class="row justify-content-center">
           <div class="row justify-content-center">
             <div class="col-auto">
-              <button id="prev" class="btn btn-primary" disabled>
-                Previous
-              </button>
+              <button id="prev" class="btn btn-primary" disabled>⏪️</button>
             </div>
             <div class="col-auto">
               <span id="counter" class=""></span>
             </div>
             <div class="col-auto">
-              <button id="next" class="btn btn-primary">Next</button>
+              <button id="next" class="btn btn-primary">⏩️</button>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-auto">
-              <button id="hintButton" class="btn btn-primary">Hint</button>
+              <button id="hintButton" class="btn btn-primary">🔍</button>
             </div>
             <div class="col-auto">
-              <button id="backToChoices" class="btn btn-primary">Menu</button>
+              <button id="backToChoices" class="btn btn-primary">⏹️</button>
             </div>
             <div class="col-auto">
-              <button id="infoButton" class="btn btn-primary">
-                References
-              </button>
+              <button id="infoButton" class="btn btn-primary">🌐</button>
             </div>
           </div>
         </div>
