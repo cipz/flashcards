@@ -95,4 +95,5 @@ button {
 
 #flashcard-commands button {
   min-width: 80px;
+  margin: 5px;
 }
