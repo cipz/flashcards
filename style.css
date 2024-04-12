@@ -71,15 +71,15 @@ button {
 }
 
 .fileLabel {
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 
 .fileLabelRow {
-  background-color: #f9f871;
+  /* background-color: #f9f871; */
 }
 
 .fileChoicesRow {
-  background-color: #f9f871;
+  /* background-color: #f9f871; */
 }
 
 .menu-entry {
@@ -91,4 +91,8 @@ button {
   margin: 10px; /* Optional: for some external spacing */
   width: auto; /* Optional: depends on content or specific requirements */
   text-align: center; /* Optional: if you need the text centered */
+}
+
+#flashcard-commands button {
+  min-width: 80px;
 }
