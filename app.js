@@ -96,27 +96,34 @@ function compileLink(cardFile) {
 }
 
 function displayChoices(flashcardFiles) {
-  const choicesContainer = document.getElementById("fileChoices");
+  const choicesContainer = document.getElementById("choices");
 
   flashcardFiles.forEach((file) => {
+
+    const choiceEntryContainer = document.createElement("div");
+    choiceEntryContainer.classList.add("col-md-3", "menu-entry");
+
     const labelRow = document.createElement("div");
-    labelRow.classList.add("row", "justify-content-center");
+    labelRow.classList.add(
+      "justify-content-center",
+      "align-items-center",
+      "menuChoice"
+    );
 
     const labelElementContainer = document.createElement("div");
-    labelElementContainer.classList.add("col-auto");
+    labelElementContainer.classList.add("col-auto", "fileLabel");
 
     const labelText = document.createElement("p");
     labelText.innerText = file.name;
 
     const buttonRow = document.createElement("div");
-    buttonRow.classList.add("row", "justify-content-center");
+    buttonRow.classList.add("row", "align-items-center");
 
     const buttonCol = document.createElement("div");
-    buttonCol.classList.add("col-auto");
+    buttonCol.classList.add("col", "align-items-center", "fileChoicesRow");
 
     const choiceButton = document.createElement("button");
     choiceButton.classList.add("btn", "btn-primary");
-    // choiceButton.innerHTML = "Flashcards<br/>" + file.name;
     choiceButton.innerText = "🪧";
     choiceButton.onclick = () => {
       const currentUrl = new URL(window.location);
@@ -125,25 +132,26 @@ function displayChoices(flashcardFiles) {
     };
 
     const cheatsheetButton = document.createElement("button");
-    // cheatsheetButton.innerHTML = "Cheatsheet<br/>" + file.name;
     cheatsheetButton.innerText = "📃";
     cheatsheetButton.classList.add("btn", "btn-primary");
     cheatsheetButton.onclick = () => {
       window.location.href = `${compileLink(file.file)}&cheatsheet=true`;
     };
 
-    labelElementContainer.appendChild(labelElement);
+    labelElementContainer.appendChild(labelText);
     labelRow.appendChild(labelElementContainer);
 
     buttonRow.appendChild(buttonCol);
     buttonCol.appendChild(choiceButton);
     buttonCol.appendChild(cheatsheetButton);
 
-    choicesContainer.appendChild(labelRow);
-    choicesContainer.appendChild(buttonRow);
+    choiceEntryContainer.appendChild(labelRow);
+    choiceEntryContainer.appendChild(buttonRow);
+
+    choicesContainer.appendChild(choiceEntryContainer);
   });
 
-  document.getElementById("choices").style.remove("d-none");
+  document.getElementById("choices").classList.remove("d-none");
 }
 
 function loadFlashcards(file, shuffle, invert) {
