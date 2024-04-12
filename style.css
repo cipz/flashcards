@@ -56,7 +56,7 @@ button {
 
 #fileChoices button {
   min-height: 50px;
-  min-width: 200px;
+  min-width: 100px;
   margin: 5px;
 }
 

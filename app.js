@@ -99,6 +99,15 @@ function displayChoices(flashcardFiles) {
   const choicesContainer = document.getElementById("fileChoices");
 
   flashcardFiles.forEach((file) => {
+    const labelRow = document.createElement("div");
+    labelRow.classList.add("row", "justify-content-center");
+
+    const labelElementContainer = document.createElement("div");
+    labelElementContainer.classList.add("col-auto");
+
+    const labelText = document.createElement("p");
+    labelText.innerText = file.name;
+
     const buttonRow = document.createElement("div");
     buttonRow.classList.add("row", "justify-content-center");
 
@@ -107,7 +116,8 @@ function displayChoices(flashcardFiles) {
 
     const choiceButton = document.createElement("button");
     choiceButton.classList.add("btn", "btn-primary");
-    choiceButton.innerHTML = "Flashcards<br/>" + file.name;
+    // choiceButton.innerHTML = "Flashcards<br/>" + file.name;
+    choiceButton.innerText = "🪧";
     choiceButton.onclick = () => {
       const currentUrl = new URL(window.location);
       currentUrl.searchParams.delete("error");
@@ -115,16 +125,21 @@ function displayChoices(flashcardFiles) {
     };
 
     const cheatsheetButton = document.createElement("button");
-    cheatsheetButton.innerHTML = "Cheatsheet<br/>" + file.name;
+    // cheatsheetButton.innerHTML = "Cheatsheet<br/>" + file.name;
+    cheatsheetButton.innerText = "📃";
     cheatsheetButton.classList.add("btn", "btn-primary");
     cheatsheetButton.onclick = () => {
       window.location.href = `${compileLink(file.file)}&cheatsheet=true`;
     };
 
+    labelElementContainer.appendChild(labelElement);
+    labelRow.appendChild(labelElementContainer);
+
     buttonRow.appendChild(buttonCol);
     buttonCol.appendChild(choiceButton);
     buttonCol.appendChild(cheatsheetButton);
 
+    choicesContainer.appendChild(labelRow);
     choicesContainer.appendChild(buttonRow);
   });
 
