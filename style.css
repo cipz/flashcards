@@ -33,17 +33,11 @@ button {
 }
 
 .flashcard-img {
-  display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 90%;
-  /* Maximum width set to 90% of the flashcard width */
-  max-height: 500px;
-  /* Maximum height set to 200px */
+  border-radius: 50px;
   height: auto;
-  /* Maintains the aspect ratio of the image */
   width: auto;
-  /* Allows the image to scale responsively within constraints */
 }
 
 #cheatsheetTable {
@@ -64,18 +58,6 @@ button {
 
 .row {
   padding: 5px;
-}
-
-.fileLabel {
-  /* background-color: aqua; */
-}
-
-.fileLabelRow {
-  /* background-color: #f9f871; */
-}
-
-.fileChoicesRow {
-  /* background-color: #f9f871; */
 }
 
 .menu-entry {

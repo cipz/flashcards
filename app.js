@@ -277,7 +277,7 @@ function loadFlashcards(file, shuffle, invert) {
         const img = document.createElement("img");
         img.src = card[imageType];
         img.alt = "Flashcard image";
-        // img.classList.add('');
+        img.classList.add("flashcard-img");
         imageContainer.innerHTML = "";
         imageContainer.appendChild(img);
       } else {
