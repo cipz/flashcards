@@ -99,7 +99,6 @@ function displayChoices(flashcardFiles) {
   const choicesContainer = document.getElementById("choices");
 
   flashcardFiles.forEach((file) => {
-
     const choiceEntryContainer = document.createElement("div");
     choiceEntryContainer.classList.add("col-md-3", "menu-entry");
 
@@ -397,7 +396,8 @@ function populateCheatsheet(flashcards) {
     answerCell.textContent = card.answer;
     notesCell.textContent = card.notes;
 
-    refButton.textContent = "View References";
+    refButton.textContent = "🌐";
+    refButton.classList.add("btn", "btn-primary");
     refButton.onclick = () =>
       showOverlay(card.references.join("<br>"), "References");
     if (!card.references) {
@@ -409,7 +409,6 @@ function populateCheatsheet(flashcards) {
     // answerCell.classList.add('');
     // notesCell.classList.add('');
 
-    // refButton.classList.add('');
     refCell.appendChild(refButton);
 
     row.appendChild(questionCell);

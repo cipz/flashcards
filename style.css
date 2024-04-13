@@ -1,6 +1,5 @@
 body {
   font-family: "Comic Neue", cursive;
-  padding-bottom: 50px;
 }
 
 button {
@@ -9,19 +8,14 @@ button {
 
 #flashcard {
   transition: background-color 0.25s ease;
-  /* Smooth transition for color change */
 }
 
-/* Adjusting the title size */
 #title {
   font-size: 25px;
-  /* Smaller than the original */
 }
 
-/* Making the flashcard content text bigger */
 .flashcard-content {
   font-size: 25px;
-  /* Larger for better readability */
 }
 
 .flashcard-question {
@@ -35,9 +29,9 @@ button {
 .flashcard-img {
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10px;
   height: auto;
   width: auto;
+  border-radius: 30px;
 }
 
 #cheatsheetTable {
@@ -57,42 +51,42 @@ button {
 }
 
 .row {
-  padding: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .menu-entry {
   font-size: 18px;
-  background-color: #f7f6d0; /* Giallo paglierino */
-  border: 4px solid #c2c1a1; /* Darker shade of giallo paglierino */
-  border-radius: 10px; /* Rounded corners */
-  padding: 20px; /* Optional: for some internal spacing */
-  margin: 10px; /* Optional: for some external spacing */
-  width: auto; /* Optional: depends on content or specific requirements */
-  text-align: center; /* Optional: if you need the text centered */
+  background-color: #f7f6d0;
+  border: 4px solid #c2c1a1;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  width: auto;
+  text-align: center;
 }
 
 #flashcard-commands button {
   min-width: 75px;
   max-width: 150px;
-  /* margin: 5px; */
 }
 
 #toast {
   padding: 10px;
   font-size: 25px;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
 }
 
 .overlay {
-  position: fixed; /* Fixed position relative to the viewport */
+  position: fixed;
   font-size: 25px;
   top: 0;
   right: 0;
   bottom: 0;
-  left: 0; /* Cover the full screen */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-  z-index: 1050; /* High z-index to stay on top */
-  display: flex; /* Use flexbox to center the content */
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  display: flex;
 }
 
 #overlayContent {
