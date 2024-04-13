@@ -24,6 +24,10 @@
           </div>
         </div>
 
+        <div id="toast" class="d-none text-center">
+          <p id="toastMessage">Error message goes here</p>
+        </div>
+
         <div id="choices" class="row justify-content-center"></div>
 
         <div id="optionsContainer" class="row justify-content-center">
@@ -132,20 +136,15 @@
           </div>
         </div>
 
-        <div id="overlay" class="d-none">
-          <div class="">
-            <div class="">
-              <h3 class="" id="overlayTitle">Details</h3>
-              <div class="" id="overlayContent"></div>
-              <div class="">
-                <button id="closeOverlay" class="">Close</button>
-              </div>
-            </div>
+        <div
+          id="overlay"
+          class="overlay d-none justify-content-center align-items-center"
+        >
+          <div class="p-5 bg-white rounded shadow-lg text-center">
+            <h3 id="overlayTitle" class="text-center">Details</h3>
+            <div id="overlayContent" class="mb-3 text-center"></div>
+            <button id="closeOverlay" class="btn btn-danger">Close</button>
           </div>
-        </div>
-
-        <div id="toast" class="d-none">
-          <p id="toastMessage">Error message goes here</p>
         </div>
       </div>
     </div>

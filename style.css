@@ -3,10 +3,6 @@ body {
   padding-bottom: 50px;
 }
 
-#title {
-  font-size: 30px;
-}
-
 button {
   min-width: 150px;
 }
@@ -18,7 +14,7 @@ button {
 
 /* Adjusting the title size */
 #title {
-  font-size: 20px;
+  font-size: 25px;
   /* Smaller than the original */
 }
 
@@ -59,7 +55,7 @@ button {
 }
 
 #choices button {
-  font-size: 24px;
+  font-size: 25px;
   min-height: 80px;
   min-width: 80px;
   border-radius: 100%;
@@ -99,6 +95,25 @@ button {
   /* margin: 5px; */
 }
 
-.command-row {
-  background-color: #b2f2bb;
+#toast {
+  padding: 10px;
+  font-size: 25px;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.overlay {
+  position: fixed; /* Fixed position relative to the viewport */
+  font-size: 25px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; /* Cover the full screen */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 1050; /* High z-index to stay on top */
+  display: flex; /* Use flexbox to center the content */
+}
+
+#overlayContent {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

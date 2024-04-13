@@ -357,7 +357,6 @@ function showOverlay(content, title = "Details") {
   overlayContent.innerHTML = content; // Could be a string or an array of items
 
   document.getElementById("overlay").classList.remove("d-none");
-  // document.getElementById('overlay').style.display = 'block';
 }
 
 function fetchAndDisplayCheatsheet(file) {
