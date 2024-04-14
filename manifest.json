@@ -1,12 +1,24 @@
 {
     "flashcardFiles": [
         {
-            "name": "💾 Test",
-            "file": "flashcards/test.json"
+            "name": "👓 Junior Front End",
+            "file": "flashcards/junior_frontend_generic.json"
         },
         {
-            "name": "🕹️ Bash operators",
-            "file": "flashcards/bash_operators.json"
+            "name": "🛜 Networking simple questions",
+            "file": "flashcards/junior_frontend_networking.json"
+        },
+        {
+            "name": "🧪 React",
+            "file": "flashcards/junior_frontend_react.json"
+        },
+        {
+            "name": "🎰 Javascript",
+            "file": "flashcards/junior_frontend_javascript.json"
+        },
+        {
+            "name": "💅 CSS",
+            "file": "flashcards/junior_frontend_css.json"
         },
         {
             "name": "🕹️ Bash Shortcuts",
@@ -17,8 +29,12 @@
             "file": "flashcards/sqlite.json"
         },
         {
-            "name": "🐈 Terminal",
-            "file": "flashcards/terminal.json"
+            "name": "🕹️ Bash operators",
+            "file": "flashcards/bash_operators.json"
+        },
+        {
+            "name": "💾 Test",
+            "file": "flashcards/test.json"
         }
     ]
 }
