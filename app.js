@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const shuffle = getQueryParam("shuffle") === "true";
   const invert = getQueryParam("invert") === "true";
 
-  document.getElementById("currentLink").text = window.location.href
+  document.getElementById("currentLink").text = window.location.href.replace("https://", "").replace("http://", "")
   document.getElementById("currentLink").href = window.location.href
 
   // Hide or show the back button based on whether a cardFile is present
