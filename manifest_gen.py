@@ -39,7 +39,7 @@ schema = {
             "minItems": 1
         }
     },
-    "required": ["title", "sources", "cards"],
+    "required": ["title", "cards"],
 }
 
 manifest_file_dict = {
@@ -66,6 +66,8 @@ for f in listdir(flashcards_files_path):
                 print(f"Exception in file {full_file_path} ❌ : {ve}")
                 sys.exit(1)
                 
+            print()
+            
 with open("./manifest.json", "w") as manifest_file:
     manifest_file.write(json.dumps(manifest_file_dict, indent=2))
     
