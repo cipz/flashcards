@@ -94,7 +94,12 @@ button {
   padding-bottom: 10px;
 }
 
-
 #legend {
   margin-top: 50px;
+}
+
+/* Custom styles for the search bar if necessary */
+.input-group {
+  max-width: 500px; /* Continue to limit the search bar width for aesthetics */
+  margin: 0 auto 20px; /* Maintain centering and spacing */
 }

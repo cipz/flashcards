@@ -100,7 +100,7 @@ function displayChoices(flashcardFiles) {
 
   flashcardFiles.forEach((file) => {
     const choiceEntryContainer = document.createElement("div");
-    choiceEntryContainer.classList.add("col-md-3", "menu-entry");
+    choiceEntryContainer.classList.add("col-md-3", "menu-entry", "flashcard");
 
     const labelRow = document.createElement("div");
     labelRow.classList.add(
@@ -114,6 +114,7 @@ function displayChoices(flashcardFiles) {
 
     const labelText = document.createElement("p");
     labelText.innerText = file.name;
+    labelText.classList.add("title");
 
     const buttonRow = document.createElement("div");
     buttonRow.classList.add("row", "align-items-center");
@@ -204,7 +205,6 @@ function loadFlashcards(file, shuffle, invert) {
     let firstLoad = true;
 
     const contentElement = document.getElementById("content");
-    // const imageContainer = document.getElementById("imageContainer") || createImageContainer();
     const imageContainer = document.getElementById("imageContainer");
 
     if (flashcards.length === 0) {
@@ -422,3 +422,17 @@ function populateCheatsheet(flashcards) {
   // Show the cheatsheet
   document.getElementById("cheatsheetContainer").classList.remove("d-none");
 }
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const input = this.value.toLowerCase();
+  const flashcards = document.querySelectorAll(".flashcard"); // Ensure this class is correctly assigned to each flashcard container
+
+  flashcards.forEach((card) => {
+    const title = card.querySelector(".title").textContent.toLowerCase(); // Adjust this selector based on your actual DOM structure
+    if (title.includes(input)) {
+      card.style.display = ""; // Show the flashcard
+    } else {
+      card.style.display = "none"; // Hide the flashcard
+    }
+  });
+});
