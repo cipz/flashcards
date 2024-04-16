@@ -253,6 +253,7 @@ function loadFlashcards(file, shuffle, invert) {
     }
 
     document.getElementById("optionsContainer").classList.add("d-none");
+    document.getElementById("searchInput").classList.add("d-none");
 
     function updateFlashcardContent(content) {
       const flashcardElement = document.getElementById("flashcard");
