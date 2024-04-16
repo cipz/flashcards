@@ -15,7 +15,7 @@ jobs:
       - name: Running manifest generator script
         working-directory: "."
         run: |
-          python3 -u manifest-gen.py
+          python3 -u manifest_gen.py
           
       - name: Committing manifest file changes
         working-directory: "."
