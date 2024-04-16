@@ -1,0 +1,34 @@
+name: Automatically updating manifest file
+
+on: 
+  push:
+    branches:
+      - master
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+
+      - name: Running manifest generator script
+        working-directory: "."
+        run: |
+          python3 -u manifest-gen.py
+          
+      - name: Committing manifest file changes
+        working-directory: "."
+        continue-on-error: true
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git status
+          git add manifest.json
+          git commit -m "🤖 Automatically updated manifest.json file" -a
+      
+      - name: Push changes if any
+        uses: ad-m/github-push-action@master
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
