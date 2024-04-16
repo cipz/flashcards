@@ -7,9 +7,6 @@ import json
 
 from jsonschema import validate, ValidationError
 
-import logging
-logger = logging.getLogger(__name__)
-
 flashcards_files_path = './flashcards/'
 
 schema = {
@@ -57,16 +54,16 @@ for f in listdir(flashcards_files_path):
         with open(full_file_path) as flashcard_file:
             file_content = json.loads(flashcard_file.read())
             
-            logging.info(f"Checking {full_file_path} ... ")
+            print(f"Checking {full_file_path} ... ")
             try:
                 manifest_file_dict["flashcardFiles"].append({
                     "name": file_content["title"],
                     "file": full_file_path
                 })
-                logging.info(f"{full_file_path} ✅")
+                print(f"{full_file_path} ✅")
                 
             except ValidationError as ve:
-                logging.exception(f"Exception in file {full_file_path} ❌ : {ve}")
+                print(f"Exception in file {full_file_path} ❌ : {ve}")
                 sys.exit(1)
                 
 with open("./manifest.json", "w") as manifest_file:
