@@ -1,6 +1,8 @@
 from os import listdir
 from os.path import isfile, join
 
+import sys
+
 import json
 
 from jsonschema import validate, ValidationError
@@ -65,6 +67,7 @@ for f in listdir(flashcards_files_path):
                 
             except ValidationError as ve:
                 logging.exception(f"Exception in file {full_file_path} ❌ : {ve}")
+                sys.exit(1)
                 
 with open("./manifest.json", "w") as manifest_file:
     manifest_file.write(json.dumps(manifest_file_dict, indent=2))
