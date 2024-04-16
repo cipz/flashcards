@@ -57,9 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
   if (cardFile && showCheatsheet) {
     fetchAndDisplayCheatsheet(cardFile);
     toggleNavigationVisibility(false);
+    document.getElementById("flashcard-commands").classList.remove("d-none")
   } else if (cardFile) {
     loadFlashcards(cardFile, shuffle, invert);
     toggleNavigationVisibility(true);
+    document.getElementById("flashcard-commands").classList.remove("d-none")
   } else {
     toggleNavigationVisibility(false);
     fetch("manifest.json")
@@ -253,7 +255,7 @@ function loadFlashcards(file, shuffle, invert) {
     }
 
     document.getElementById("optionsContainer").classList.add("d-none");
-    document.getElementById("searchInput").classList.add("d-none");
+    document.getElementById("searchInputDiv").classList.add("d-none");
 
     function updateFlashcardContent(content) {
       const flashcardElement = document.getElementById("flashcard");
@@ -367,6 +369,8 @@ function fetchAndDisplayCheatsheet(file) {
       document.getElementById("cheatsheetContainer").classList.remove("d-none");
       document.getElementById("flashcard").classList.add("d-none"); // Assuming you have a container for flashcards
       document.getElementById("optionsContainer").classList.add("d-none"); // Assuming you have a container for flashcards
+      document.getElementById("searchInputDiv").classList.add("d-none");
+      document.getElementById("searchCheatsheetDiv").classList.remove("d-none");
       document.getElementById("title").textContent = data.title;
     })
     .catch((error) => console.error("Failed to fetch flashcards:", error));
@@ -378,12 +382,13 @@ function populateCheatsheet(flashcards) {
 
   flashcards.forEach((card) => {
     const row = document.createElement("tr");
+    row.classList.add("cheatsheetEntry")
 
     const questionCell = document.createElement("td");
-    questionCell.classList.add("text-center");
+    questionCell.classList.add("text-center", "cheatSheetEntryQuestion");
 
     const answerCell = document.createElement("td");
-    answerCell.classList.add("text-center");
+    answerCell.classList.add("text-center", "cheatSheetEntryAnswer");
 
     const notesCell = document.createElement("td");
     notesCell.classList.add("text-center");
@@ -437,3 +442,18 @@ document.getElementById("searchInput").addEventListener("input", function () {
     }
   });
 });
+
+document.getElementById("searchCheatsheet").addEventListener("input", function () {
+    const input = this.value.toLowerCase();
+    const cheatsheetEntries = document.querySelectorAll(".cheatsheetEntry"); // Ensure this class is correctly assigned to each flashcard container
+  
+    cheatsheetEntries.forEach((entry) => {
+      const question = entry.querySelector(".text-center.cheatSheetEntryQuestion").textContent.toLowerCase(); // Adjust this selector based on your actual DOM structure
+      const answer = entry.querySelector(".text-center.cheatSheetEntryAnswer").textContent.toLowerCase(); // Adjust this selector based on your actual DOM structure
+      if (question.includes(input)) {
+        entry.style.display = ""; // Show the flashcard
+      } else {
+        entry.style.display = "none"; // Hide the flashcard
+      }
+    });
+  });

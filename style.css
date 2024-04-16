@@ -1,5 +1,6 @@
 body {
   font-family: "Comic Neue", cursive;
+  position: relative;
 }
 
 button {
@@ -95,11 +96,17 @@ button {
 }
 
 #legend {
-  margin-top: 50px;
+  margin: 50px 0px;
 }
 
 /* Custom styles for the search bar if necessary */
 .input-group {
   max-width: 500px; /* Continue to limit the search bar width for aesthetics */
   margin: 0 auto 20px; /* Maintain centering and spacing */
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100vw;
 }
