@@ -14,12 +14,13 @@ jobs:
 
       - name: Running manifest generator script
         working-directory: "."
+        continue-on-error: false
         run: |
           python3 -u manifest_gen.py
           
       - name: Committing manifest file changes
         working-directory: "."
-        continue-on-error: true
+        continue-on-error: false
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
