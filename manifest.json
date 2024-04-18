@@ -1,18 +1,6 @@
 {
   "flashcardFiles": [
     {
-      "name": "Junior Front-End Developer Interview Questions",
-      "file": "./flashcards/junior_frontend_generic.json"
-    },
-    {
-      "name": "Bash Shortcuts",
-      "file": "./flashcards/bash_shortcuts.json"
-    },
-    {
-      "name": "Junior React Developer Interview Questions",
-      "file": "./flashcards/junior_frontend_react.json"
-    },
-    {
       "name": "Bash Test Operators",
       "file": "./flashcards/bash_operators.json"
     },
@@ -21,20 +9,12 @@
       "file": "./flashcards/test.json"
     },
     {
-      "name": "Junior Front-End Developer Networking Interview Questions",
-      "file": "./flashcards/junior_frontend_networking.json"
-    },
-    {
-      "name": "Junior CSS Developer Interview Questions",
-      "file": "./flashcards/junior_frontend_css.json"
+      "name": "Bash Shortcuts",
+      "file": "./flashcards/bash_shortcuts.json"
     },
     {
       "name": "SQLite",
       "file": "./flashcards/sqlite.json"
-    },
-    {
-      "name": "Junior JavaScript Developer Interview Questions",
-      "file": "./flashcards/junior_frontend_javascript.json"
     }
   ]
 }
