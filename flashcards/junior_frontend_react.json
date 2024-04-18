@@ -1,0 +1,109 @@
+{
+  "title": "Junior React Developer Interview Questions",
+  "sources": [
+    "https://reactjs.org/docs/getting-started.html",
+    "https://javascript.info/"
+  ],
+  "cards": [
+    {
+      "question": "What is React and why is it used?",
+      "answer": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called 'components'. React is used to build single-page applications where data reflects in real time.",
+      "hint": "React is not a framework, but a library.",
+      "notes": "React's main concept is the component, the building block of React UIs.",
+      "references": [
+        "https://reactjs.org/",
+        "https://en.wikipedia.org/wiki/React_(JavaScript_library)"
+      ]
+    },
+    {
+      "question": "Explain the virtual DOM and its advantages.",
+      "answer": "The virtual DOM (VDOM) is a programming concept where an ideal, or 'virtual', representation of a UI is kept in memory and synced with the 'real' DOM by a library such as ReactDOM. This process is called reconciliation. The virtual DOM provides a node tree that lists the elements, their attributes, and content as Objects, which React can quickly render and update.",
+      "hint": "Virtual DOM optimizes re-rendering.",
+      "notes": "The VDOM allows React to minimize expensive DOM manipulation operations by batching changes and updating the actual DOM efficiently.",
+      "references": [
+        "https://reactjs.org/docs/faq-internals.html",
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"
+      ]
+    },
+    {
+      "question": "What are components in React?",
+      "answer": "Components are the building blocks of any React application, and a single app usually consists of multiple components. These components can be functional or class-based and are used to define pieces of the UI, each responsible for rendering a small, reusable section of the UI.",
+      "hint": "Components are like JavaScript functions.",
+      "notes": "Components can be categorized into smart/container and dumb/presentational.",
+      "references": [
+        "https://reactjs.org/docs/components-and-props.html",
+        "https://reactjs.org/docs/react-component.html"
+      ]
+    },
+    {
+      "question": "Describe the difference between a class component and a functional component.",
+      "answer": "A class component requires you to extend from React.Component and create a render function which returns a React element. It can hold state and lifecycle methods. A functional component is a JavaScript function that returns a React element and does not have lifecycle methods or state without using hooks.",
+      "hint": "Think of lifecycle methods and state.",
+      "notes": "Since React 16.8, functional components can perform almost everything a class component can do, with Hooks.",
+      "references": [
+        "https://reactjs.org/docs/components-and-props.html#function-and-class-components",
+        "https://reactjs.org/docs/hooks-intro.html"
+      ]
+    },
+    {
+      "question": "What are keys in React lists and why are they important?",
+      "answer": "Keys are a special string attribute you need to include when creating lists of elements in React. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity.",
+      "hint": "Keys help in efficient updates of user interfaces.",
+      "notes": "Using keys improves the performance of updates, particularly for dynamic content.",
+      "references": [
+        "https://reactjs.org/docs/lists-and-keys.html#keys",
+        "https://reactjs.org/docs/reconciliation.html#recursing-on-children"
+      ]
+    },
+    {
+      "question": "Explain React's lifecycle methods.",
+      "answer": "Lifecycle methods are special methods each component can have that allow us to hook into the views when specific conditions happen (e.g., a component being created or destroyed). Important lifecycle methods include componentDidMount, componentDidUpdate, and componentWillUnmount.",
+      "hint": "They are like events that get called at specific times.",
+      "notes": "These methods can be thought of as lifecycle hooks used for various purposes like fetching data, directly updating the DOM, setting up subscriptions, etc.",
+      "references": [
+        "https://reactjs.org/docs/react-component.html#the-component-lifecycle",
+        "https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/"
+      ]
+    },
+    {
+      "question": "Can you explain what JSX is?",
+      "answer": "JSX is a syntax extension for JavaScript recommended by React for writing HTML in React. Although not necessary, JSX provides a visual aid when working with UI inside the JavaScript code. It makes it easier to write and add HTML in React.",
+      "hint": "JSX tags look like HTML tags.",
+      "notes": "JSX converts HTML tags into react elements.",
+      "references": [
+        "https://reactjs.org/docs/introducing-jsx.html",
+        "https://reactjs.org/docs/jsx-in-depth.html"
+      ]
+    },
+    {
+      "question": "What is 'state' in React?",
+      "answer": "State is an object that determines the behavior of a component and how it will render. State is mutable and creates dynamic and interactive components. It is managed within the component (similar to variables declared within a function).",
+      "hint": "State changes can be asynchronous.",
+      "notes": "State should be updated using the setState method, which also merges the new state with the old state and re-renders the component.",
+      "references": [
+        "https://reactjs.org/docs/faq-state.html",
+        "https://reactjs.org/docs/state-and-lifecycle.html"
+      ]
+    },
+    {
+      "question": "What are props in React?",
+      "answer": "Props (short for properties) are read-only components. They are single values or objects containing a set of values that are passed to components on creation using a naming convention similar to HTML-tag attributes. They are how components talk to each other.",
+      "hint": "Props are immutable.",
+      "notes": "Props are to components what arguments are to functions.",
+      "references": [
+        "https://reactjs.org/docs/components-and-props.html",
+        "https://reactjs.org/docs/jsx-in-depth.html#props-in-jsx"
+      ]
+    },
+    {
+      "question": "How do you handle events in React?",
+      "answer": "Events in React are handled using camelCase syntax as attributes passed to components. For example, in HTML, we use 'onclick', but in React, it's 'onClick'. React events are wrapped in a synthetic event wrapper to manage the cross-browser compatibility.",
+      "hint": "React standardizes events across browsers with a wrapper.",
+      "notes": "Event handlers are passed as functions or methods and are used to perform actions based on user interactions.",
+      "references": [
+        "https://reactjs.org/docs/handling-events.html",
+        "https://reactjs.org/docs/events.html"
+      ]
+    }
+  ]
+}
