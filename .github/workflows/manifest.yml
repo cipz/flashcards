@@ -16,7 +16,7 @@ jobs:
         working-directory: "."
         continue-on-error: false
         run: |
-          python3 -u manifest_gen.py
+          python3 manifest_gen.py
           
       - name: Committing manifest file changes
         working-directory: "."
