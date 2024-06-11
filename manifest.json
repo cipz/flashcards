@@ -9,12 +9,12 @@
       "file": "./flashcards/test.json"
     },
     {
-      "name": "Bash Shortcuts",
-      "file": "./flashcards/bash_shortcuts.json"
-    },
-    {
       "name": "SQLite",
       "file": "./flashcards/sqlite.json"
+    },
+    {
+      "name": "Bash Shortcuts",
+      "file": "./flashcards/bash_shortcuts.json"
     }
   ]
 }
